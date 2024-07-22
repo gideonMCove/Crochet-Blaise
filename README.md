@@ -1,5 +1,7 @@
 <img src ="Captstone_Home.PNG" alt="Store page showing crochet patterns" width=520px/>
 
+<img src ="Capstone_Create.PNG" alt="page showing grid for creating patterns" width=520px/>
+
 # ***Chrochet-Blaise***
 
 Crochet Blaise is a webpage designed to inspire and help people create their own crochet creations. Browse the page for designs, and click on them for more detailed information about the techniques and tools used to create the patterns. Or, users can upload their own patterns to inspire their fellow chrocheters to create their own masterpieces.
