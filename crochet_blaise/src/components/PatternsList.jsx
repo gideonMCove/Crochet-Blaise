@@ -4,7 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 export default function PatternsList () {
     const [patterns, setPatterns] = useState("")
-    let { patternsId } = useParams()
+    let { patternId } = useParams()
     let navigate = useNavigate()
 
     useEffect (() => {
@@ -27,7 +27,7 @@ export default function PatternsList () {
             {
                 patterns != "" ? (                            
                     patterns.data.map((pattern, index) => (                                
-                        <h1 className="map" key ={index} onClick={()=>showPattern(pattern.id)} >
+                        <h1 className="map" key ={index} onClick={()=>showPattern(pattern.id)}>
                         {console.log('pattern',pattern)}
                             <ul>
                                  {pattern.artist}
