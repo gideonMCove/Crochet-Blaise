@@ -10,10 +10,10 @@ export default function PatternsList () {
     useEffect (() => {
         const getPatterns = async () => {
             try{
-                const response = await axios.get(`http://localhost:800/patterns/`)
+                const response = await axios.get(`http://localhost:8000/patterns/`)
                 setPatterns(response)
             } catch (error) {
-                console.error(`Cannot load events`, error)
+                console.error(`Cannot load patterns`, error)
             }
         }
         getPatterns()

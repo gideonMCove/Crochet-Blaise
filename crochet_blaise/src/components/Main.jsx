@@ -1,6 +1,9 @@
 import React from 'react'
 import { Route, Routes} from 'react-router-dom'
 import Home from './Home'
+import CreatePattern from './CreatePattern'
+import PatternsList from './PatternsList'
+import PatternDetail from './PatternDetails'
 
 export default function Main () {
     return (
