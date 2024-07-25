@@ -3,9 +3,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 SKILL_LEVEL_CHOICES = {
-    'BEG': 'Beginner',
-    'INT': 'Intermediate',
-    'EXP': 'Expert'
+    ('BEG', 'Beginner'),
+    ('INT', 'Intermediate'),
+    ('EXP', 'Expert'),
 }
 
 def validate_positive(value):
@@ -19,40 +19,40 @@ def validate_positive(value):
 
 
 class Profile(models.Model):
-    name = models.CharField(30)    
+    name = models.CharField(max_length=30)    
 
     def __str__(self):
         return self.name
     
 class Patterns(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='patterns')
-    name = models.CharField(30)
-    description = models.TextField
+    name = models.CharField(max_length=30)
+    description = models.TextField()
 
     def __str__(self):
         return self.name
 
 class Patterns_Yarn(models.Model):
-    patterns = models.ForeignKey(Patterns, on_delete=models.CASCADE, related_name='yarn')
-    name = models.CharField(30)
+    patterns = models.ForeignKey(Patterns, on_delete=models.CASCADE, related_name='patterns_yarn')
+    name = models.CharField(max_length=30)
 
     def __str__(self):
         return self.name
 
 class Yarn(models.Model):
     patterns_yarn = models.ForeignKey(Patterns_Yarn, on_delete=models.CASCADE, related_name='yarn')
-    name = models.CharField(60)
-    brand = models.CharField(30)
-    colour = models.CharField(15)
+    name = models.CharField(max_length=60)
+    brand = models.CharField(max_length=30)
+    colour = models.CharField(max_length=15)
     price = models.IntegerField(validators=[validate_positive])
-    size = models.CharField(30)
+    size = models.CharField(max_length=30)
     
 
     def __str__(self):
         return self.name
 class Techniques(models.Model):
     patterns = models.ForeignKey(Patterns, on_delete=models.CASCADE, related_name='techniques')
-    name = models.CharField(30)
+    name = models.CharField(max_length=30)
     description = models.TextField()
     skill_level = models.CharField(max_length=3, choices=SKILL_LEVEL_CHOICES, default='Beginner')
 
@@ -61,7 +61,7 @@ class Techniques(models.Model):
 
 class Tools(models.Model):
     techniques = models.ForeignKey(Techniques, on_delete=models.CASCADE, related_name='tools')
-    name = models.CharField(30)
+    name = models.CharField(max_length=30)
     description = models.TextField()
     brand = models.CharField()
 
