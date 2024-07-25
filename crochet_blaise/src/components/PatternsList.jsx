@@ -30,7 +30,7 @@ export default function PatternsList () {
                         <h1 className="map" key ={index} onClick={()=>showPattern(pattern.id)}>
                         {console.log('pattern',pattern)}
                             <ul>
-                                 {pattern.artist}
+                                 {pattern.name}
                             </ul>
                         </h1>
                     ))

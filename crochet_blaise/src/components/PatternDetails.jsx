@@ -13,17 +13,9 @@ export default function PatternDetail () {
     const [updateShow,setUpdateShow] = useState(false)    
     const [formData, setFormData] = useState({
        
-        artist: '',
-        genre: '',
-        date: '',
-        price: '',
-        over18: true,
-        ticket_limit: '',
-        image_url: '',
-        venue_id: '',
-        comedy: true,
-        concert: true,
-        sport: true
+        name: '',
+        description: '',
+        techniques: [],
     })
     let { patternId } = useParams()
     const navigate = useNavigate()
@@ -36,18 +28,9 @@ export default function PatternDetail () {
                     const responseData = response.data
                     {
                     setFormData({
-                        venue: responseData.venue,
-                        artist: responseData.artist,
-                        genre: responseData.genre,
-                        date: responseData.date,
-                        price: responseData.price,
-                        over18: responseData.over18,
-                        ticket_limit: responseData.ticket_limit,
-                        image_url: responseData.image_url,
-                        venue_id: responseData.venue_id,
-                        comedy: responseData.comedy,
-                        concert: responseData.concert,
-                        sport: responseData.sport
+                        name: responseData.name,
+                        description: responseData.description,
+                        techniques: responseData.techniques,
                         })
                     }
                     
