@@ -10,8 +10,7 @@ import { Form } from 'react-bootstrap'
 export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
-    const [updateShow,setUpdateShow] = useState(false)
-    const [venues,setVenues] = useState(null)
+    const [updateShow,setUpdateShow] = useState(false)    
     const [formData, setFormData] = useState({
        
         artist: '',
@@ -26,7 +25,7 @@ export default function PatternDetail () {
         concert: true,
         sport: true
     })
-    let { eventId } = useParams()
+    let { patternId } = useParams()
     const navigate = useNavigate()
     useEffect(() =>{    
             const getDetail = async () => {
@@ -51,8 +50,7 @@ export default function PatternDetail () {
                         sport: responseData.sport
                         })
                     }
-                    const venueResponse = await axios.get(`http://localhost:8000/venues`)
-                    setVenues(venueResponse)
+                    
 
                 } catch (error) {
                     console.error('Cannot load details', error)
@@ -67,8 +65,8 @@ export default function PatternDetail () {
     const handleUShow = () => setUpdateShow(true)
     const handleDelete = async () =>{
         try {
-            await axios.delete(`http://localhost:8000/events/${eventId}`)
-            navigate('/events')
+            await axios.delete(`http://localhost:8000/pattern/${patternId}`)
+            navigate('/patterns')
         } catch (error) {
             console.error(`nah nah nah nah, nah nah, nah nah, can't delete this`)
         }
@@ -77,7 +75,7 @@ export default function PatternDetail () {
         // console.log('Event ID:', eventId)
         console.log('Form Data:', formData)
         try {
-            await axios.put(`http://localhost:8000/events/${eventId}`, formData)
+            await axios.put(`http://localhost:8000/patterns/${patternId}`, formData)
             // const updatedEvent = await axios.get(`http://localhost:8000/events/${eventId}`)
             setDetails(formData)
             handleClose()
@@ -97,10 +95,6 @@ export default function PatternDetail () {
     } 
 
     const booleanChange = (e) => {
-       
-     
-       
-      
         setFormData({
             ...formData,
             [e.target.name]: e.target.checked
