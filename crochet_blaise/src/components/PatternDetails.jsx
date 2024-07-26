@@ -11,7 +11,7 @@ export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
     const [updateShow,setUpdateShow] = useState(false) 
-    const [profiles,setProfiles]   
+    const [profiles,setProfiles] = useState("")   
     const [formData, setFormData] = useState({
        
         name: '',
@@ -38,9 +38,13 @@ export default function PatternDetail () {
                         try {
                             const profileResponse = await axios.get(`http://localhost:8000/profiles/${response.data.id}`)
                             setProfiles(profileResponse)
+                        } catch (error) {
+                            console.error('Cannot load profiles', error)
+
                         }
 
                     }
+                    getProfile()
                     
 
                 } catch (error) {
@@ -49,11 +53,7 @@ export default function PatternDetail () {
             }
             getDetail()
             
-            const getProfile = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:8000/$`)
-                }
-            }
+            
         },[])
    
     const handleClose = () => setShow(false)
