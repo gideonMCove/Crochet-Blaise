@@ -10,7 +10,8 @@ import { Form } from 'react-bootstrap'
 export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
-    const [updateShow,setUpdateShow] = useState(false)    
+    const [updateShow,setUpdateShow] = useState(false) 
+    const [profiles,setProfiles]   
     const [formData, setFormData] = useState({
        
         name: '',
@@ -33,6 +34,13 @@ export default function PatternDetail () {
                         techniques: responseData.techniques,
                         })
                     }
+                    const getProfile = async () => {
+                        try {
+                            const profileResponse = await axios.get(`http://localhost:8000/profiles/${response.data.id}`)
+                            setProfiles(profileResponse)
+                        }
+
+                    }
                     
 
                 } catch (error) {
@@ -40,6 +48,12 @@ export default function PatternDetail () {
                 }                
             }
             getDetail()
+            
+            const getProfile = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:8000/$`)
+                }
+            }
         },[])
    
     const handleClose = () => setShow(false)
@@ -173,8 +187,8 @@ export default function PatternDetail () {
                     <h1>
                         
                         {details.data.artist}<br />
-                        Genre: {details.data.genre}<br />
-                        Ticket Price: ${details.data.price}<br />
+                        Title: {details.data.name}<br />
+                        Ticket Price: {details.data.price}<br />
                         Ticket Limit: {details.data.ticket_limit}
                         </h1>
                     ) : (
