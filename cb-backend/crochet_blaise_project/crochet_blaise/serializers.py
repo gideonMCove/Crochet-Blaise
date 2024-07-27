@@ -55,7 +55,7 @@ class PatternsSerializer(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Patterns
-        fields = ('id','patterns_yarn','techniques','patterns_url','profile','profile_id','name','description',)
+        fields = ('id','patterns_yarn','patterns_url','profile','profile_id','name','description','onSale')
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     patterns = PatternsSerializer(
         many=True,

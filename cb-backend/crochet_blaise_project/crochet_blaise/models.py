@@ -30,6 +30,7 @@ class Patterns(models.Model):
     description = models.TextField()
     price = models.IntegerField(validators=[validate_positive])
     image = models.CharField(max_length=200) 
+    onSale = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
