@@ -11,8 +11,4 @@ urlpatterns = [
     path('patterns_yarn/<int:pk>', views.Patterns_YarnDetail.as_view(), name='patterns_yarn_detail'),
     path('yarns/', views.YarnList.as_view(), name='yarn_list'),
     path('yarns/<int:pk>', views.YarnDetail.as_view(), name='yarn_detail'),
-    path('techniques/', views.TechniquesList.as_view(), name='techniques_list'),
-    path('techniques/<int:pk>', views.TechniquesDetail.as_view(), name='techniques_detail'),
-    path('tools/', views.ToolsList.as_view(), name='tools_list'),
-    path('tools/<int:pk>', views.ToolsDetail.as_view(), name='tools_detail'),
 ]

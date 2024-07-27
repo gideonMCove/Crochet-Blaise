@@ -4,7 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 export default function PatternsList () {
     const [patterns, setPatterns] = useState("")
-    let { patternId } = useParams()
+    let { patternID } = useParams()
     let navigate = useNavigate()
 
     useEffect (() => {

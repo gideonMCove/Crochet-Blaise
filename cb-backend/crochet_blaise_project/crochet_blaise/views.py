@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .serializers import ToolsSerializer, TechniquesSerializer, YarnSerializer, Patterns_YarnSerializer, PatternsSerializer, ProfileSerializer
-from .models import Tools, Techniques, Yarn, Patterns_Yarn, Patterns, Profile
+from .serializers import  YarnSerializer, Patterns_YarnSerializer, PatternsSerializer, ProfileSerializer
+from .models import  Yarn, Patterns_Yarn, Patterns, Profile
 # Create your views here.
 
 class ProfileList(generics.ListCreateAPIView):
@@ -35,18 +35,3 @@ class YarnDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Yarn.objects.all()
     serializer_class = YarnSerializer
 
-class TechniquesList(generics.ListCreateAPIView):
-    queryset = Techniques.objects.all()
-    serializer_class = TechniquesSerializer
-
-class TechniquesDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Techniques.objects.all()
-    serializer_class = TechniquesSerializer
-
-class ToolsList(generics.ListCreateAPIView):
-    queryset = Tools.objects.all()
-    serializer_class = ToolsSerializer
-
-class ToolsDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tools.objects.all()
-    serializer_class = ToolsSerializer

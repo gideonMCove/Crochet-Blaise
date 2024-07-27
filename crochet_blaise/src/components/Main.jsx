@@ -12,7 +12,7 @@ export default function Main () {
                 <Route path="/" element = {<Home />}/>
                 <Route path="/create" element = {<CreatePattern />}/>
                 <Route path="/patterns" element = {<PatternsList />}/>
-                <Route path="/pattern/:patternID" element = {<PatternDetail />}/>
+                <Route path="/patterns/:patternID" element = {<PatternDetail />}/>
             </Routes>
         </div>
     )

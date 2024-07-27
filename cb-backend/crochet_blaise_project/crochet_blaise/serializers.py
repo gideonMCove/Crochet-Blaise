@@ -1,42 +1,8 @@
 from rest_framework import serializers
-from .models import Profile, Patterns, Patterns_Yarn, Yarn, Techniques, Tools
+from .models import Profile, Patterns, Patterns_Yarn, Yarn
 
 
-class ToolsSerializer(serializers.HyperlinkedModelSerializer):
-    techniques = serializers.HyperlinkedRelatedField(
-        view_name='techniques_detail',
-        read_only=True
-    )
 
-    techniques_id = serializers.PrimaryKeyRelatedField(
-        queryset=Techniques.objects.all(),
-        source='techniques'
-
-    )
-
-    class Meta:
-        model = Tools
-        fields = ('id', 'techniques', 'name', 'description', 'brand','techniques_id',)
-
-class TechniquesSerializer(serializers.HyperlinkedModelSerializer):
-    tools = ToolsSerializer(
-        many=True,
-        read_only=True
-    )
-    techniques_url = serializers.ModelSerializer.serializer_url_field(
-        view_name='techniques_detail'
-    )
-    patterns = serializers.HyperlinkedRelatedField(
-        view_name='patterns_detail',
-        read_only=True
-    )
-    patterns_id = serializers.PrimaryKeyRelatedField(
-        queryset=Patterns.objects.all(),
-        source='patterns'
-    )
-    class Meta:
-        model = Techniques
-        fields =('id', 'patterns','name','description','skill_level','tools','techniques_url','patterns_id')
 class YarnSerializer(serializers.HyperlinkedModelSerializer):
     patterns_yarn = serializers.HyperlinkedRelatedField(
         view_name='patterns_yarn_detail',
@@ -73,10 +39,6 @@ class Patterns_YarnSerializer(serializers.HyperlinkedModelSerializer):
 
 class PatternsSerializer(serializers.HyperlinkedModelSerializer):
     patterns_yarn = Patterns_YarnSerializer(
-        many=True,
-        read_only=True
-    )
-    techniques = TechniquesSerializer(
         many=True,
         read_only=True
     )

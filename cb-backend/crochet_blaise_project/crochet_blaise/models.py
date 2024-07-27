@@ -28,6 +28,8 @@ class Patterns(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='patterns')
     name = models.CharField(max_length=30)
     description = models.TextField()
+    price = models.IntegerField(validators=[validate_positive])
+    image = models.CharField(max_length=200) 
 
     def __str__(self):
         return self.name
@@ -46,24 +48,7 @@ class Yarn(models.Model):
     colour = models.CharField(max_length=15)
     price = models.IntegerField(validators=[validate_positive])
     size = models.CharField(max_length=30)
-    
-
-    def __str__(self):
-        return self.name
-class Techniques(models.Model):
-    patterns = models.ForeignKey(Patterns, on_delete=models.CASCADE, related_name='techniques')
-    name = models.CharField(max_length=30)
-    description = models.TextField()
-    skill_level = models.CharField(max_length=3, choices=SKILL_LEVEL_CHOICES, default='Beginner')
-
-    def __str__(self):
-        return self.name
-
-class Tools(models.Model):
-    techniques = models.ForeignKey(Techniques, on_delete=models.CASCADE, related_name='tools')
-    name = models.CharField(max_length=30)
-    description = models.TextField()
-    brand = models.CharField()
+    image = models.CharField(max_length=200)    
 
     def __str__(self):
         return self.name

@@ -11,19 +11,20 @@ export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
     const [updateShow,setUpdateShow] = useState(false) 
-    const [profiles,setProfiles] = useState("")   
+    const [profiles,setProfiles] = useState(null)   
     const [formData, setFormData] = useState({
        
         name: '',
         description: '',
+        profile: "",
         techniques: [],
     })
-    let { patternId } = useParams()
+    let { patternID } = useParams()
     const navigate = useNavigate()
     useEffect(() =>{    
             const getDetail = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:8000/events/${eventId}`)
+                    const response = await axios.get(`http://localhost:8000/patterns/${patternID}`)
                     setDetails(response)
                     
                     const responseData = response.data
@@ -31,12 +32,13 @@ export default function PatternDetail () {
                     setFormData({
                         name: responseData.name,
                         description: responseData.description,
+                        profile : responseData.description,
                         techniques: responseData.techniques,
                         })
                     }
                     const getProfile = async () => {
                         try {
-                            const profileResponse = await axios.get(`http://localhost:8000/profiles/${response.data.id}`)
+                            const profileResponse = await axios.get(`${details.data.profile}`)
                             setProfiles(profileResponse)
                         } catch (error) {
                             console.error('Cannot load profiles', error)
@@ -55,31 +57,31 @@ export default function PatternDetail () {
             
             
         },[])
-   
+    console.log('details',details)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
     const handleUClose = () => setUpdateShow(false)
     const handleUShow = () => setUpdateShow(true)
     const handleDelete = async () =>{
         try {
-            await axios.delete(`http://localhost:8000/pattern/${patternId}`)
+            await axios.delete(`http://localhost:8000/pattern/${patternID}`)
             navigate('/patterns')
         } catch (error) {
             console.error(`nah nah nah nah, nah nah, nah nah, can't delete this`)
         }
     }
     const handleUpdate = async () =>{
-        // console.log('Event ID:', eventId)
+        
         console.log('Form Data:', formData)
         try {
-            await axios.put(`http://localhost:8000/patterns/${patternId}`, formData)
-            // const updatedEvent = await axios.get(`http://localhost:8000/events/${eventId}`)
+            await axios.put(`http://localhost:8000/patterns/${patternID}`, formData)
+            
             setDetails(formData)
             handleClose()
             window.location.reload()
 
         } catch (error) {
-            console.error('Error updating event!!!!')
+            console.error('Error updating pattern!!!!')
         }
     }
 
@@ -103,12 +105,12 @@ export default function PatternDetail () {
         <div className ='patternDetail'>
             {/* Delete Modal */}
             <Button variant='primary' onClick ={handleShow}>
-                Delete Event
+                Delete Pattern
             </Button>
             {
                 details != null ? (
             <Modal show={show} onHide={handleClose}>                
-                <Modal.Body>Are you sure you would like to delete this event? This process can not be reversed</Modal.Body>
+                <Modal.Body>Are you sure you would like to delete this pattern? This process can not be reversed</Modal.Body>
                 <Modal.Footer>
                     <Button variant ='secondary' onClick ={handleClose}>
                         Cancel
@@ -124,49 +126,43 @@ export default function PatternDetail () {
             }
             {/*Update Modal*/}
             <Button variant='primary' onClick ={handleUShow}>
-                Update Event
+                Update Pattern
             </Button>
 
             {
-                details!= null && venues != null ? ( 
+                details!= null && profiles != null ? ( 
             <Modal show={updateShow} onHide={handleUClose}>
                 <Modal.Body>
-                    <Form onSubmit={handleUpdate}>
-                        <Form.Group controlId="formVenueName">
-                            <Form.Label>Venue</Form.Label>
-                            <Form.Control
-                                as="select"                                
-                                name="venue"
-                                value={formData.venue}
-                                onChange={handleChange}
-                                required
-                            >
-                                {
-                                    venues.data.map((venue, index )=> (
-                                        <option value={venue.id} key={index}>{venue.id}</option>
-                                    ))
-                                }
-                                </Form.Control>
-                        </Form.Group>
-                        <Form.Group controlId="formArtist">
-                            <Form.Label>Artist</Form.Label>
+                    <Form onSubmit={handleUpdate}>                       
+                        <Form.Group controlId="formName">
+                            <Form.Label>Title</Form.Label>
                             <Form.Control
                                 type="text"
-                                name="artist"
-                                value={formData.artist}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleChange}
                                 required
                             />
                         </Form.Group>
-                        <Form.Group controlId='formGenre'>
-                            <Form.Label>Genre</Form.Label>
+                        <Form.Group controlId='formDescription'>
+                            <Form.Label>Description</Form.Label>
                             <Form.Control
                                 type='text'
-                                name='genre'
-                                value={formData.genre}
+                                name='description'
+                                value={formData.description}
                                 onChange={handleChange}
                                 required
                             />     
+                        </Form.Group>
+                        <Form.Group controlId='formTechniques'>
+                            <Form.Label>Techniques</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="techniques"
+                                value={formData.techniques}
+                                onChange={handleChange}
+                                required
+                        />
                         </Form.Group>
                         <Button variant='primary' onClick={handleUpdate}>
                             Save Changes
@@ -181,15 +177,15 @@ export default function PatternDetail () {
                     <h1></h1>
                 )
 }
-                <h1>EventDetail!</h1>
+                <h1>Pattern Detail!</h1>
                 {
                     details != null ? (
                     <h1>
                         
                         {details.data.artist}<br />
                         Title: {details.data.name}<br />
-                        Ticket Price: {details.data.price}<br />
-                        Ticket Limit: {details.data.ticket_limit}
+                        {details.data.description}<br />
+                        Techniques: {details.data.ticket_limit}
                         </h1>
                     ) : (
                         <h1>Data is not loaded</h1>
