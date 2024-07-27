@@ -5,7 +5,8 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
 import './Grid.css'
-
+// change colour feature. Have text appear for coloured squares. 
+// loadGrid() put this in a use effect later 
 export default function CreatePattern ({rows = 10, columns = 10}) {
 
     
@@ -38,10 +39,24 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
             setGrid(newGrid);
           }
 
+    const saveGrid = () => {
+    localStorage.setItem('gridState', JSON.stringify(grid))
+    }
+    
+    const loadGrid = () => {
+    const savedGrid = localStorage.getItem('gridState')
+    if (savedGrid) {
+        setGrid(JSON.parse(savedGrid))
+    }
+    }
+
 
 
     return (
         <div className = 'createPattern'>
+            <div className="color-picker">
+                <SketchPicker color={color} onChangeComplete={(color) => setColor(color.hex)} />
+            </div>
             {grid.map((row, rowIndex) => (
         <div key={rowIndex} className="grid-row">
           {row.map((cell, colIndex) => (
