@@ -15,6 +15,7 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
         const [numRows, setNumRows] = useState(rows)
         const [numCols, setNumCols] = useState(columns)
         const [color, setColor] = useState('white')
+        const [dragging, setDragging] = useState(false)
 
         useEffect(() => {
           setGrid(
@@ -50,6 +51,21 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
             )
             setGrid(newGrid);
           }
+
+    const handleMouseDown = () => setDragging(true);
+    const handleMouseUp = () => setDragging(false);
+    const handleMouseOver = (row, col) => {
+        if (dragging) {
+            const newGrid = grid.map((r, rowIndex) =>
+                r.map((cell, colIndex) =>
+                    rowIndex === row && colIndex === col
+                        ? { ...cell, color }
+                        : cell
+                )
+            );
+            setGrid(newGrid);
+        }
+    };
 
     const saveGrid = () => {
       localStorage.setItem('gridState', JSON.stringify(grid))
@@ -96,6 +112,9 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
               className="grid-cell"
               style={{ backgroundColor: cell.color }}
               onClick={() => handleDraw(rowIndex, colIndex)}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseOver={() => handleMouseOver(rowIndex, colIndex)}
             >
               <input
                 type="text"
