@@ -5,17 +5,29 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
 import './Grid.css'
+import { SketchPicker } from 'react-color'
 // change colour feature. Have text appear for coloured squares. 
 // loadGrid() put this in a use effect later 
-export default function CreatePattern ({rows = 10, columns = 10}) {
-
-    
+export default function CreatePattern ({rows = 10, columns = 10}) {    
         const [grid, setGrid] = useState(
           Array(rows).fill(null).map(() => Array(columns).fill({ text: '', color: 'white' }))
         )
+        const [numRows, setNumRows] = useState(rows)
+        const [numCols, setNumCols] = useState(columns)
+        const [color, setColor] = useState('white')
+
+        useEffect(() => {
+          setGrid(
+              Array(numRows).fill(null).map(() => Array(numCols).fill({ text: '', color: 'white' }))
+          )
+        }, [numRows, numCols])
+
+        useEffect(() => {
+          loadGrid()
+        }, [])
       
         const handleChange = (row, col, event) => {
-          const newText = event.target.value;
+          const newText = event.target.value
           const newGrid = grid.map((r, rowIndex) =>
             r.map((cell, colIndex) =>
               rowIndex === row && colIndex === col
@@ -23,7 +35,7 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
                 : cell
             )
           )
-          setGrid(newGrid);
+          setGrid(newGrid)
         }
 
 
@@ -40,26 +52,28 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
           }
 
     const saveGrid = () => {
-    localStorage.setItem('gridState', JSON.stringify(grid))
+      localStorage.setItem('gridState', JSON.stringify(grid))
     }
     
     const loadGrid = () => {
-    const savedGrid = localStorage.getItem('gridState')
-    if (savedGrid) {
-        setGrid(JSON.parse(savedGrid))
-    }
+      const savedGrid = localStorage.getItem('gridState')
+      if (savedGrid) {
+          setGrid(JSON.parse(savedGrid))
+      }
     }
 
     const handleSizeChange = () => {
         const newRows = parseInt(prompt("Enter number of rows:", numRows), 10)
         const newCols = parseInt(prompt("Enter number of columns:", numCols), 10)
         if (!isNaN(newRows) && !isNaN(newCols)) {
-          setNumRows(newRows);
-          setNumCols(newCols);
+          setNumRows(newRows)
+          setNumCols(newCols)
           setGrid(
             Array(newRows).fill(null).map(() => Array(newCols).fill({ text: '', color: 'white' }))
           )
-        }
+        } else {
+          alert('Invalid input. Please enter valid numbers.')
+      }
       }
 
 
