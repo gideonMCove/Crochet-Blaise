@@ -64,7 +64,8 @@ export default function PatternDetail () {
     const handleUShow = () => setUpdateShow(true)
     const handleDelete = async () =>{
         try {
-            await axios.delete(`http://localhost:8000/pattern/${patternID}`)
+            console.log('patternId', patternID)
+            await axios.delete(`http://localhost:8000/patterns/${patternID}`)
             navigate('/patterns')
         } catch (error) {
             console.error(`nah nah nah nah, nah nah, nah nah, can't delete this`)
