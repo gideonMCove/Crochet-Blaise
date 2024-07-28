@@ -35,3 +35,13 @@ grid-container {
     height: 100%;
     box-sizing: border-box;
   }
+
+
+  .controls {
+    margin-bottom: 10px;
+  }
+  
+  .controls button {
+    margin: 0 5px;
+    padding: 5px 10px;
+  }
