@@ -44,7 +44,7 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
             const newGrid = grid.map((r, rowIndex) =>
               r.map((cell, colIndex) =>
                 rowIndex === row && colIndex === col
-                  ? { ...cell, color: cell.color === 'white' ? 'black' : 'white' }
+                  ? { ...cell, color }
                   : cell
               )
             )
