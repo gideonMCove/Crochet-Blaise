@@ -5,8 +5,6 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
 
-
-
 export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
@@ -217,7 +215,7 @@ export default function PatternDetail () {
                             />     
                         </Form.Group>
                         <Form.Group controlId='formOnSale'>
-                            <Form.Label>Shop Item</Form.Label>
+                            <Form.Label>Shop Item?</Form.Label>
                             <Form.Check
                                 type='checkbox'
                                 defaultChecked={details.data.onSale ? true : false}
@@ -269,6 +267,16 @@ export default function PatternDetail () {
                         <h1>
                         price: {details.data.price}
                         </h1>
+                    ) : (
+                        <h1></h1>
+                    )
+                }
+                {
+                    details.data.onSale == true && details.data.price == 0 ? (
+                        <h1>
+                            Free download
+                        </h1>
+
                     ) : (
                         <h1></h1>
                     )
