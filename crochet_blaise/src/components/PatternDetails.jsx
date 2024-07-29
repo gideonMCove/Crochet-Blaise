@@ -257,12 +257,20 @@ export default function PatternDetail () {
                       
                         Title: {details.data.name}<br />
                         {details.data.description}<br />
-                        {details.data.onSale} != 0 ?(
-                            Price : {details.data.price}
-                        )                        
+                        
                         </h1>
                     ) : (
                         <h1>Data is not loaded</h1>
+                    )
+                    
+                }
+                {
+                    details.data.onSale != true || details.data.price == 0 ?(
+                        <h1>
+                        price: {details.data.price}
+                        </h1>
+                    ) : (
+                        <h1></h1>
                     )
                 }
         </div>
