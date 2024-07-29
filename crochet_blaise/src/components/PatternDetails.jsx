@@ -255,10 +255,10 @@ export default function PatternDetail () {
                     details != null ? (
                     <h1>                     
                       
-                        Title: {formData.name}<br />
-                        {formData.description}<br />
-                        {formData.onSale} != 0 ?(
-                            Price : {formData.price}
+                        Title: {details.data.name}<br />
+                        {details.data.description}<br />
+                        {details.data.onSale} != 0 ?(
+                            Price : {details.data.price}
                         )                        
                         </h1>
                     ) : (
