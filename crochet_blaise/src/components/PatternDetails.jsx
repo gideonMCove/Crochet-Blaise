@@ -160,8 +160,18 @@ export default function PatternDetail () {
                                 value={Boolean(formData.onSale)}
                                 onChange={booleanChange}
                                 required
-                            />     
+                            />                             
                         </Form.Group>
+                        <Form.Group controlId='formPrice'>
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control
+                                type='number'
+                                name='price'
+                                value={formData.price}
+                                onChange={handleChange}
+                                required
+                            /> 
+                        </Form.Group>    
                         <Button variant='primary' onClick={handleUpdate}>
                             Save Changes
                         </Button>
@@ -178,12 +188,13 @@ export default function PatternDetail () {
                 <h1>Pattern Detail!</h1>
                 {
                     details != null ? (
-                    <h1>
-                        
-                        {details.data.artist}<br />
-                        Title: {details.data.name}<br />
-                        {details.data.description}<br />
-                        Techniques: {details.data.ticket_limit}
+                    <h1>                       
+                      
+                        Title: {formData.name}<br />
+                        {formData.description}<br />
+                        {formData.onSale} != 0 ?(
+                            Price : {formData.price}
+                        )                        
                         </h1>
                     ) : (
                         <h1>Data is not loaded</h1>
