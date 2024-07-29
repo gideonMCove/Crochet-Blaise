@@ -12,12 +12,11 @@ export default function PatternDetail () {
     const [show,setShow] = useState(false)
     const [updateShow,setUpdateShow] = useState(false) 
     const [profiles,setProfiles] = useState(null)   
-    const [formData, setFormData] = useState({
-       
+    const [formData, setFormData] = useState({       
         name: '',
         description: '',
-        profile: "",
-        techniques: [],
+        onSale: "",
+        price: 0,
     })
     let { patternID } = useParams()
     const navigate = useNavigate()
@@ -41,12 +40,9 @@ export default function PatternDetail () {
                             setProfiles(profileResponse)
                         } catch (error) {
                             console.error('Cannot load profiles', error)
-
                         }
-
                     }
-                    getProfile()
-                    
+                    getProfile()                    
 
                 } catch (error) {
                     console.error('Cannot load details', error)
@@ -68,20 +64,17 @@ export default function PatternDetail () {
             console.error(`nah nah nah nah, nah nah, nah nah, can't delete this`)
         }
     }
-    const handleUpdate = async () =>{
-        
+    const handleUpdate = async () =>{        
         console.log('Form Data:', formData)
         try {
             await axios.patch(`http://localhost:8000/patterns/${patternID}`, formData)            
             setDetails(formData)
             handleClose()
             window.location.reload()
-
         } catch (error) {
             console.error('Error updating pattern!!!!')
         }
     }
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -89,7 +82,6 @@ export default function PatternDetail () {
         })
         console.log('handleChange', formData)
     } 
-
     const booleanChange = (e) => {
         setFormData({
             ...formData,
@@ -97,7 +89,6 @@ export default function PatternDetail () {
         })
         console.log('booleanChange', formData)
     } 
-
     return (
         <div className ='patternDetail'>
             {/* Delete Modal */}
