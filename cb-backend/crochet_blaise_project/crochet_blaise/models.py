@@ -28,7 +28,7 @@ class Patterns(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='patterns')
     name = models.CharField(max_length=30)
     description = models.TextField()
-    price = models.IntegerField(validators=[validate_positive])
+    price = models.IntegerField(validators=[validate_positive], default= 0)
     image = models.CharField(max_length=200) 
     onSale = models.BooleanField(default=False)
 

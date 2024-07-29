@@ -25,8 +25,7 @@ export default function PatternDetail () {
             const getDetail = async () => {
                 try {
                     const response = await axios.get(`http://localhost:8000/patterns/${patternID}`)
-                    setDetails(response)
-                    
+                    setDetails(response)                    
                     const responseData = response.data
                     {
                     setFormData({
