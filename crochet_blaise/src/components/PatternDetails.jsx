@@ -23,7 +23,7 @@ export default function PatternDetail () {
             const getDetail = async () => {
                 try {
                     const response = await axios.get(`http://localhost:8000/patterns/${patternID}`)
-                    setDetails(response)                    
+                    setDetails(response.data)                    
                     const responseData = response.data
                     {
                     setFormData({
@@ -33,15 +33,15 @@ export default function PatternDetail () {
                         price: responseData.price,
                         })
                     }
-                    const getProfile = async () => {
-                        try {
-                            const profileResponse = await axios.get(`${details.data.profile}`)
-                            setProfiles(profileResponse)
-                        } catch (error) {
-                            console.error('Cannot load profiles', error)
-                        }
-                    }
-                    getProfile()                    
+                    // const getProfile = async () => {
+                    //     try {
+                    //         const profileResponse = await axios.get(`${details.data.profile}`)
+                    //         setProfiles(profileResponse)
+                    //     } catch (error) {
+                    //         console.error('Cannot load profiles', error)
+                    //     }
+                    // }
+                    // getProfile()                    
 
                 } catch (error) {
                     console.error('Cannot load details', error)
@@ -49,7 +49,10 @@ export default function PatternDetail () {
             }
             getDetail()
         },[])
-    console.log('details',details)
+        if (details != null){
+            console.log('details',details)
+        }
+    
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
     const handleUClose = () => setUpdateShow(false)
@@ -99,6 +102,7 @@ export default function PatternDetail () {
         })
         console.log('booleanChange', formData)
     } 
+    if (details != null){
     return (
         <div className ='patternDetail'>
             {/* Delete Modal */}
@@ -156,7 +160,7 @@ export default function PatternDetail () {
                             <Form.Label>Shop Item</Form.Label>
                             <Form.Check
                                 type='checkbox'
-                                defaultChecked={details.data.onSale ? true : false}
+                                defaultChecked={details.onSale ? true : false}
                                 name='over18'
                                 value={Boolean(formData.onSale)}
                                 onChange={booleanChange}
@@ -218,7 +222,7 @@ export default function PatternDetail () {
                             <Form.Label>Shop Item?</Form.Label>
                             <Form.Check
                                 type='checkbox'
-                                defaultChecked={details.data.onSale ? true : false}
+                                defaultChecked={details.onSale ? true : false}
                                 name='over18'
                                 value={Boolean(formData.onSale)}
                                 onChange={booleanChange}
@@ -253,8 +257,8 @@ export default function PatternDetail () {
                     details != null ? (
                     <h1>                     
                       
-                        Title: {details.data.name}<br />
-                        {details.data.description}<br />
+                        Title: {details.name}<br />
+                        Description: {details.description}<br />
                         
                         </h1>
                     ) : (
@@ -263,16 +267,16 @@ export default function PatternDetail () {
                     
                 }
                 {
-                    details.data.onSale != true || details.data.price == 0 ?(
+                   details != null && details.onSale == true || details.price > 0 ?(
                         <h1>
-                        price: {details.data.price}
+                        price: {details.price}
                         </h1>
                     ) : (
                         <h1></h1>
                     )
                 }
                 {
-                    details.data.onSale == true && details.data.price == 0 ? (
+                   details != null && details.onSale == true && details.price == 0 ? (
                         <h1>
                             Free download
                         </h1>
@@ -283,4 +287,5 @@ export default function PatternDetail () {
                 }
         </div>
     )
+}
 }
