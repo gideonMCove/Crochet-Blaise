@@ -31,8 +31,8 @@ export default function PatternDetail () {
                     setFormData({
                         name: responseData.name,
                         description: responseData.description,
-                        profile : responseData.description,
-                        techniques: responseData.techniques,
+                        onSale : responseData.onSale,
+                        price: responseData.price,
                         })
                     }
                     const getProfile = async () => {
@@ -151,15 +151,16 @@ export default function PatternDetail () {
                                 required
                             />     
                         </Form.Group>
-                        <Form.Group controlId='formTechniques'>
-                            <Form.Label>Techniques</Form.Label>
-                            <Form.Control
-                                type="text"
-                                name="techniques"
-                                value={formData.techniques}
-                                onChange={handleChange}
+                        <Form.Group controlId='formOnSale'>
+                            <Form.Label>Shop Item</Form.Label>
+                            <Form.Check
+                                type='checkbox'
+                                defaultChecked={details.data.onSale ? true : false}
+                                name='over18'
+                                value={Boolean(formData.onSale)}
+                                onChange={booleanChange}
                                 required
-                        />
+                            />     
                         </Form.Group>
                         <Button variant='primary' onClick={handleUpdate}>
                             Save Changes
