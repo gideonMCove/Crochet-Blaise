@@ -11,6 +11,7 @@ export default function PatternDetail () {
     const [details,setDetails] = useState(null)
     const [show,setShow] = useState(false)
     const [updateShow,setUpdateShow] = useState(false) 
+    const [createShow, setCreateShow] = useState(false)
     const [profiles,setProfiles] = useState(null)   
     const [formData, setFormData] = useState({       
         name: '',
@@ -55,6 +56,8 @@ export default function PatternDetail () {
     const handleShow = () => setShow(true)
     const handleUClose = () => setUpdateShow(false)
     const handleUShow = () => setUpdateShow(true)
+    const handleCShow = () => setCreateShow(true)
+    const handleCClose = () => setCreateShow(false)
     const handleDelete = async () =>{
         try {
             console.log('patternId', patternID)
@@ -73,6 +76,15 @@ export default function PatternDetail () {
             window.location.reload()
         } catch (error) {
             console.error('Error updating pattern!!!!')
+        }
+    }
+    const handleCreate = async () => {
+        console.log('Form Data:', formData)
+        try {
+            await axios.post(`http://localhost:8000/patterns/`, formData)
+            setDetails(formData)
+        } catch (error) {
+            console.error('Error creating pattern!!!!!!')
         }
     }
     const handleChange = (e) => {
@@ -174,12 +186,74 @@ export default function PatternDetail () {
             </Modal>
                 ) : (
                     <h1></h1>
-                )
+                )            
 }
+            <Button variant='primary' onClick ={handleCShow}>
+                Create Pattern
+            </Button>
+            {
+                details!= null  ? ( 
+            <Modal show={createShow} onHide={handleCClose}>
+                <Modal.Body>
+                    <Form onSubmit={handleCreate}>                       
+                        <Form.Group controlId="formName">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group controlId='formDescription'>
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                                type='text'
+                                name='description'
+                                value={formData.description}
+                                onChange={handleChange}
+                                required
+                            />     
+                        </Form.Group>
+                        <Form.Group controlId='formOnSale'>
+                            <Form.Label>Shop Item</Form.Label>
+                            <Form.Check
+                                type='checkbox'
+                                defaultChecked={details.data.onSale ? true : false}
+                                name='over18'
+                                value={Boolean(formData.onSale)}
+                                onChange={booleanChange}
+                                required
+                            />                             
+                        </Form.Group>
+                        <Form.Group controlId='formPrice'>
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control
+                                type='number'
+                                name='price'
+                                value={formData.price}
+                                onChange={handleChange}
+                                required
+                            /> 
+                        </Form.Group>    
+                        <Button variant='primary' onClick={handleUpdate}>
+                            Save Changes
+                        </Button>
+                        <Button variant ='secondary' onClick={handleCClose}>
+                            Cancel
+                        </Button>               
+                    </Form>
+                </Modal.Body>
+            </Modal>
+                ) : (
+                    <h1></h1>
+                )            
+}   
                 <h1>Pattern Detail!</h1>
                 {
                     details != null ? (
-                    <h1>                       
+                    <h1>                     
                       
                         Title: {formData.name}<br />
                         {formData.description}<br />
