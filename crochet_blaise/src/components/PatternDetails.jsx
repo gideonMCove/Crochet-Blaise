@@ -54,8 +54,6 @@ export default function PatternDetail () {
                 }                
             }
             getDetail()
-            
-            
         },[])
     console.log('details',details)
     const handleClose = () => setShow(false)
@@ -75,8 +73,7 @@ export default function PatternDetail () {
         
         console.log('Form Data:', formData)
         try {
-            await axios.put(`http://localhost:8000/patterns/${patternID}`, formData)
-            
+            await axios.patch(`http://localhost:8000/patterns/${patternID}`, formData)            
             setDetails(formData)
             handleClose()
             window.location.reload()
@@ -131,7 +128,7 @@ export default function PatternDetail () {
             </Button>
 
             {
-                details!= null && profiles != null ? ( 
+                details!= null  ? ( 
             <Modal show={updateShow} onHide={handleUClose}>
                 <Modal.Body>
                     <Form onSubmit={handleUpdate}>                       
