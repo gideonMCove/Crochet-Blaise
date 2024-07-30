@@ -6,8 +6,6 @@ import Modal from 'react-bootstrap/Modal'
 import { Form } from 'react-bootstrap'
 import './Grid.css'
 import { SketchPicker } from 'react-color'
-// change colour feature. Have text appear for coloured squares. 
-// loadGrid() put this in a use effect later 
 export default function CreatePattern ({rows = 10, columns = 10}) {    
         const [grid, setGrid] = useState(
           Array(rows).fill(null).map(() => Array(columns).fill({ text: '', color: 'white' }))
@@ -16,17 +14,15 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
         const [numCols, setNumCols] = useState(columns)
         const [color, setColor] = useState('white')
         const [dragging, setDragging] = useState(false)
-
+        const [show, setShow] = useState(false)
         useEffect(() => {
           setGrid(
               Array(numRows).fill(null).map(() => Array(numCols).fill({ text: '', color: 'white' }))
           )
         }, [numRows, numCols])
-
         useEffect(() => {
           loadGrid()
-        }, [])
-      
+        }, [])      
         const handleChange = (row, col, event) => {
           const newText = event.target.value
           const newGrid = grid.map((r, rowIndex) =>
@@ -38,9 +34,6 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
           )
           setGrid(newGrid)
         }
-
-
-
     const handleDraw = (row, col) => {
             const newGrid = grid.map((r, rowIndex) =>
               r.map((cell, colIndex) =>
@@ -51,7 +44,6 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
             )
             setGrid(newGrid);
           }
-
     const handleMouseDown = () => setDragging(true);
     const handleMouseUp = () => setDragging(false);
     const handleMouseOver = (row, col) => {
@@ -62,11 +54,10 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
                         ? { ...cell, color }
                         : cell
                 )
-            );
+            )
             setGrid(newGrid);
         }
-    };
-
+    }
     const saveGrid = () => {
       localStorage.setItem('gridState', JSON.stringify(grid))
     }
@@ -77,7 +68,6 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
           setGrid(JSON.parse(savedGrid))
       }
     }
-
     const handleSizeChange = () => {
         const newRows = parseInt(prompt("Enter number of rows:", numRows), 10)
         const newCols = parseInt(prompt("Enter number of columns:", numCols), 10)
@@ -91,13 +81,24 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
           alert('Invalid input. Please enter valid numbers.')
       }
       }
-
-
-
+    const showColour =() => {
+      let toggle = 0
+      toggle +=1
+      if (toggle % 2 != 0){
+        setShow(true)
+      }
+      else{
+        setShow(false)
+      }
+    } 
     return (
         <div className = 'createPattern'>
+          <Button variant ='primary' onClick={showColour}>
+           Toggle Colour Wheel
+          </Button>
+          
             <div className="color-picker">
-                <SketchPicker color={color} onChangeComplete={(color) => setColor(color.hex)} />
+                <SketchPicker show={show} color={color} onChangeComplete={(color) => setColor(color.hex)} />
             </div>
             <div className="controls">
                 <button onClick={saveGrid}>Save Grid</button>
@@ -125,8 +126,7 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
             </div>
           ))}
         </div>
-      ))}
-            
+      ))}            
         </div>
     )
 }

@@ -29,7 +29,7 @@ class Patterns(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField()
     price = models.IntegerField(validators=[validate_positive], default= 0)
-    image = models.CharField(max_length=200) 
+    image = models.CharField(max_length=200, default="placeholder") 
     onSale = models.BooleanField(default=False)
 
     def __str__(self):

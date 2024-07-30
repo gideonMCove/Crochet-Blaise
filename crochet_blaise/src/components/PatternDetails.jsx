@@ -34,17 +34,7 @@ export default function PatternDetail () {
                         price: responseData.price,
                         image: responseData.image
                         })
-                    }
-                    // const getProfile = async () => {
-                    //     try {
-                    //         const profileResponse = await axios.get(`${details.data.profile}`)
-                    //         setProfiles(profileResponse)
-                    //     } catch (error) {
-                    //         console.error('Cannot load profiles', error)
-                    //     }
-                    // }
-                    // getProfile()                    
-
+                    } 
                 } catch (error) {
                     console.error('Cannot load details', error)
                 }                
@@ -53,8 +43,7 @@ export default function PatternDetail () {
         },[])
         if (details != null){
             console.log('details',details)
-        }
-    
+        }    
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
     const handleUClose = () => setUpdateShow(false)
@@ -73,6 +62,7 @@ export default function PatternDetail () {
     const handleUpdate = async () =>{        
         console.log('Form Data:', formData)
         try {
+            console.log('updat form', formData)
             await axios.patch(`http://localhost:8000/patterns/${patternID}`, formData)            
             setDetails(formData)
             handleClose()
@@ -132,7 +122,6 @@ export default function PatternDetail () {
             <Button variant='primary' onClick ={handleUShow}>
                 Update Pattern
             </Button>
-
             {
                 details!= null  ? ( 
             <Modal show={updateShow} onHide={handleUClose}>
@@ -201,7 +190,7 @@ export default function PatternDetail () {
                 ) : (
                     <h1></h1>
                 )            
-}
+            }
             <Button variant='primary' onClick ={handleCShow}>
                 Create Pattern
             </Button>
@@ -273,15 +262,13 @@ export default function PatternDetail () {
                 ) : (
                     <h1></h1>
                 )            
-}   
+            }   
                 <h1>Pattern Detail!</h1>
                 {
                     details != null ? (
-                    <h1>                     
-                      
+                    <h1> 
                         Title: {details.name}<br />
-                        Description: {details.description}<br />
-                        
+                        Description: {details.description}<br />                        
                         </h1>
                     ) : (
                         <h1>Data is not loaded</h1>
@@ -302,7 +289,6 @@ export default function PatternDetail () {
                         <h1>
                             Free download
                         </h1>
-
                     ) : (
                         <h1></h1>
                     )
