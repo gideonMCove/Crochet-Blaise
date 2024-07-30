@@ -263,13 +263,16 @@ export default function PatternDetail () {
                     <h1></h1>
                 )            
             }   
-                <h1>Pattern Detail!</h1>
+                <div className = "card">
                 {
                     details != null ? (
                     <h1> 
                         Title: {details.name}<br />
-                        Description: {details.description}<br />                        
-                        </h1>
+                        Description: {details.description}<br /> 
+                        <img className = "image">{details.image}</img>                       
+                    </h1>
+                       
+                        
                     ) : (
                         <h1>Data is not loaded</h1>
                     )
@@ -293,6 +296,7 @@ export default function PatternDetail () {
                         <h1></h1>
                     )
                 }
+                </div>
         </div>
     )
 }
