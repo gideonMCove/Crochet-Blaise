@@ -16,6 +16,7 @@ export default function PatternDetail () {
         description: '',
         onSale: "",
         price: 0,
+        image: "",
     })
     let { patternID } = useParams()
     const navigate = useNavigate()
@@ -31,6 +32,7 @@ export default function PatternDetail () {
                         description: responseData.description,
                         onSale : responseData.onSale,
                         price: responseData.price,
+                        image: responseData.image
                         })
                     }
                     // const getProfile = async () => {
@@ -176,7 +178,17 @@ export default function PatternDetail () {
                                 onChange={handleChange}
                                 required
                             /> 
-                        </Form.Group>    
+                        </Form.Group>  
+                        <Form.Group controlId='formImage'>
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control
+                                type='text'
+                                name='image'
+                                value={formData.image}
+                                onChange={handleChange}
+                                required
+                            /> 
+                        </Form.Group>  
                         <Button variant='primary' onClick={handleUpdate}>
                             Save Changes
                         </Button>
@@ -238,7 +250,17 @@ export default function PatternDetail () {
                                 onChange={handleChange}
                                 required
                             /> 
-                        </Form.Group>    
+                        </Form.Group>
+                        <Form.Group controlId='formImage'>
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control
+                                type='text'
+                                name='image'
+                                value={formData.image}
+                                onChange={handleChange}
+                                required
+                            /> 
+                        </Form.Group>      
                         <Button variant='primary' onClick={handleUpdate}>
                             Save Changes
                         </Button>
