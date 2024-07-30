@@ -31,7 +31,6 @@ h1 {
   margin: 0 auto;
   
 }
-
 .nav a {
   text-decoration: none;
   color: black;
@@ -40,7 +39,12 @@ h1 {
   justify-content: center;
   
 }
-
 .nav a:hover {
   color:lightgreen
 }
+
+.home {
+  font-size: calc(1.5rem + 1vw);  
+  
+}
+
