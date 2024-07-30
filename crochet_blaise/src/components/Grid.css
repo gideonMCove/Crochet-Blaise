@@ -45,3 +45,8 @@ grid-container {
     margin: 0 5px;
     padding: 5px 10px;
   }
+
+  h1 {
+    font-size: calc(1.5rem + 1vw);
+    
+  }
