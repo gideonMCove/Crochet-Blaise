@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap'
 export default function Home () {
     return (
         <div className = "home">
-            <h1>Welcome To Crochet Blaise!</h1>
+            <h1>Welcome To Crochet Blasé!</h1>
             <p>Browse and create your own patterns!</p>
         </div>
         
