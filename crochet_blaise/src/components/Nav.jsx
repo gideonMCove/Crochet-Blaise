@@ -8,14 +8,7 @@ export default function Nav () {
             <Link to='/'>Home </Link>
             <Link to='/patterns'> Patterns </Link>
             <Link to='/create'> Create Patterns</Link>
-          
-
-            {/* <Route path="/" element = {<Home />}/>
-                <Route path="/create" element = {<CreatePattern />}/>
-                <Route path="/patterns" element = {<PatternsList />}/>
-                <Route path="/pattern/:patternID" element = {<PatternDetail />}/> */}
-
-            
+                       
         </div>
     )
 } 
