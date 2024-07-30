@@ -271,12 +271,9 @@ export default function PatternDetail () {
                         Description: {details.description}<br /> 
                         <img className = "image">{details.image}</img>                       
                     </h1>
-                       
-                        
                     ) : (
                         <h1>Data is not loaded</h1>
-                    )
-                    
+                    )                    
                 }
                 {
                    details != null && details.onSale == true || details.price > 0 ?(
