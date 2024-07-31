@@ -2,9 +2,9 @@
 
 <img src ="Capstone_Create.PNG" alt="page showing grid for creating patterns" width=520px/>
 
-# ***Chrochet-Blaise***
+# ***Chrochet-Blase***
 
-Crochet Blaise is a webpage designed to inspire and help people create their own crochet creations. Browse the page for designs, and click on them for more detailed information about the techniques and tools used to create the patterns. Or, users can upload their own patterns to inspire their fellow chrocheters to create their own masterpieces.
+Crochet Blase is a webpage designed to inspire and help people create their own crochet creations. Browse the page for designs, and click on them for more detailed information about the techniques and tools used to create the patterns. Or, users can upload their own patterns to inspire their fellow chrocheters to create their own masterpieces.
 
 ## ERD
 
@@ -24,5 +24,12 @@ Django - Database
 
 ## Resources Used
 
+[React Bootstrap](https://react-bootstrap.netlify.app/)
+
+[React Color](https://casesandberg.github.io/react-color/)
+
+[CSS Section Separator Generator](https://wweb.dev/resources/css-separator-generator)
+
+[chatGPT](https://chatgpt.com/)
 
 
