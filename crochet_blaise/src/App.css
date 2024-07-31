@@ -3,11 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-image: url("https://imgur.com/a/tqRqlx0");
+  
 }
 
 body {
-  background-image: url("https://imgur.com/a/tqRqlx0");
+  background: #06d6a0;
 }
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
@@ -32,6 +32,7 @@ h1 {
   
 }
 
+
 .nav {
   position: fixed;
   top:0px;
@@ -40,6 +41,8 @@ h1 {
   border: 1.5px solid greenyellow;
   display: flex; 
   gap: 10vw;
+  background-color: #f48c06;
+  
  
   
 }
@@ -48,10 +51,11 @@ h1 {
   color: black;
   font-size: calc(1.5rem + 1vw);
   font-family: "Permanent Marker", cursive;
-    font-weight: 400;
-    font-style: normal;
+  font-weight: 400;
+  font-style: normal;
   justify-content: center;
   margin: 0 auto;
+  
   
 }
 .nav a:hover {
@@ -59,8 +63,26 @@ h1 {
 }
 
 .home {
-  font-size: calc(1.5rem + 1vw);   
+  font-size: calc(1.5rem + 1vw); 
+  position: relative;
+  background: #ffd166;
+  height: 50vh;  
 }
+
+.home::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  left: -0%;
+  top: 100%;
+  z-index: 10;
+  display: block;
+  height: 50px;
+  background-size: 50px 100%;
+  background-image: linear-gradient(135deg, #ffd166 25%, transparent 25%), linear-gradient(225deg, #ffd166 25%, transparent 25%);
+  background-position: 0 0;
+}
+
 
 .card {
   background: white;
@@ -85,4 +107,39 @@ h1 {
   object-fit: cover;
 }
 
+.container {
+  position: relative;
+  background: #2c3e50;
+  height: 50vh;
+}
+
+.wave {
+  position: absolute;
+  height: 141px;
+  width: 100%;
+  background: #2c3e50;
+  bottom: 0;
+}
+
+.wave::before, .wave::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% 50%;
+}
+
+.wave::before {
+  width: 55%;
+  height: 109%;
+  background-color: #fff;
+  right: -1.5%;
+  top: 60%;
+}
+.wave::after {
+  width: 55%;
+  height: 100%;
+  background-color: #2c3e50;
+  left: -1.5%;
+  top: 40%;
+}
 
