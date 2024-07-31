@@ -1,6 +1,6 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
+  
   padding: 2rem;
   text-align: center;
 }
@@ -23,12 +23,14 @@ h1 {
 }
 
 .nav {
-  position: absolute;
+  position: fixed;
   top:0px;
+  left: 0px;
+  right: 0px;
   border: 1.5px solid greenyellow;
   display: flex; 
   gap: 10vw;
-  margin: 0 auto;
+ 
   
 }
 .nav a {
@@ -37,6 +39,7 @@ h1 {
   font-size: calc(1.5rem + 1vw);
   font-style: italic;
   justify-content: center;
+  margin: 0 auto;
   
 }
 .nav a:hover {

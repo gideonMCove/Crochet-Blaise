@@ -26,13 +26,15 @@ export default function PatternsList () {
         <div className = "patternsList">
             {
                 patterns != "" ? (                            
-                    patterns.data.map((pattern, index) => (                                
+                    patterns.data.map((pattern, index) => (  
+                        <div className= 'card'>                              
                         <h1 className="map" key ={index} onClick={()=>showPattern(pattern.id)}>
                         {console.log('pattern',pattern)}
                             <ul>
                                  {pattern.name}
                             </ul>
                         </h1>
+                        </div>
                     ))
                 ) : (
                     <h1>patterns have yet to be loaded</h1>
