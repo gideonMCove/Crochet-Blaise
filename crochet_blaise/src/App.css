@@ -47,8 +47,7 @@ h1 {
 }
 
 .home {
-  font-size: calc(1.5rem + 1vw);  
-  
+  font-size: calc(1.5rem + 1vw);   
 }
 
 .card {
@@ -57,10 +56,10 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 600px;
-  padding: 16px;
-  
+  width: 30vw;
+  padding: 16px;  
   margin: 0 auto;
+  font-size: calc(0.5rem + 1vw);
 }
 
 .card:hover {
