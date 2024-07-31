@@ -55,6 +55,7 @@ h1 {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 300px;
+  padding: 16px;
 }
 
 .card:hover {
@@ -62,7 +63,7 @@ h1 {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card-img {
+.image {
   width: 100%;
   height: 150px;
   object-fit: cover;

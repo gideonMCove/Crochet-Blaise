@@ -269,7 +269,7 @@ export default function PatternDetail () {
                     <h1> 
                         Title: {details.name}<br />
                         Description: {details.description}<br /> 
-                        <img src={details.image} alt="pattern"></img>                      
+                        <img src={details.image} alt="pattern" className="image"></img>                      
                     </h1>
                     ) : (
                         <h1>Data is not loaded</h1>
