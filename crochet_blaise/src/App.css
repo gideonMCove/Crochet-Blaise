@@ -3,6 +3,11 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-image: url("https://imgur.com/a/tqRqlx0");
+}
+
+body {
+  background-image: url("https://imgur.com/a/tqRqlx0");
 }
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
@@ -20,6 +25,11 @@
 
 h1 {
   font-size: calc(1.5rem + 1vw);
+  
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+  
 }
 
 .nav {
@@ -37,7 +47,9 @@ h1 {
   text-decoration: none;
   color: black;
   font-size: calc(1.5rem + 1vw);
-  font-style: italic;
+  font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
   justify-content: center;
   margin: 0 auto;
   
