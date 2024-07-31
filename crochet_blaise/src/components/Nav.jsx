@@ -7,8 +7,7 @@ export default function Nav () {
         <span className="nav">
             <Link to='/'>Home </Link>
             <Link to='/patterns'> Patterns </Link>
-            <Link to='/create'> Create Patterns</Link>
-                       
+            <Link to='/create'> Create Patterns</Link>                       
         </span>
     )
 } 
