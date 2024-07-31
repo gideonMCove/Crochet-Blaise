@@ -93,9 +93,7 @@ export default function CreatePattern ({rows = 10, columns = 10}) {
     } 
     return (
         <div className = 'createPattern'>
-          <Button variant ='primary' onClick={showColour}>
-           Toggle Colour Wheel
-          </Button>
+          
           
             <div className="color-picker">
                 <SketchPicker show={show} color={color} onChangeComplete={(color) => setColor(color.hex)} />

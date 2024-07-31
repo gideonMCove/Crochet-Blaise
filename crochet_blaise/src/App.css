@@ -2,7 +2,8 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;  
+  text-align: center; 
+  top: 25%; 
 }
 
 body {
@@ -42,6 +43,7 @@ p {
   display: flex; 
   gap: 10vw;
   background-color: #f48c06;
+  margin: 0 0 15px 0;
 }
 
 .nav a {
@@ -87,15 +89,18 @@ p {
 
 
 .card {
+  display: block;
   background: #118ab2;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 30vw;
+  width: 60vw;
   padding: 16px;  
-  margin: 0 auto;
+  margin: 5 auto;
   font-size: calc(0.5rem + 1vw);  
+  top: 25%;
+  font-size: calc(0.4rem + 1vw);
 }
 
 .card:hover {
@@ -111,19 +116,19 @@ p {
 
 @media only screen and (max-width: 600px) {
   .card{
-    font-size: 16px;
+    font-size: 12px;
 
   }
   h1 {
-    font-size: 16px;
+    font-size: 12px;
 
   }
   p {
-    font-size: 16px;
+    font-size: 12px;
 
   }
   .home {
-    font-size: 16px;
+    font-size: 12px;
 
   }
 }
